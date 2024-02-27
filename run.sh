@@ -18,7 +18,7 @@ function install() {
 	case $distro in
 		9front)
 			# download iso to 9front.iso
-			curl -L http://9front.org/iso/9front-7781.38dcaeaa222c.amd64.iso.gz -o plan9.iso.gz
+			curl -L http://9front.org/iso/9front-10277.amd64.iso.gz -o 9front.iso.gz
 			gunzip 9front.iso.gz
 			stat 9front.iso
 			iso_file='plan9.iso'
