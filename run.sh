@@ -21,7 +21,7 @@ function install() {
 			curl -L http://9front.org/iso/9front-10277.amd64.iso.gz -o 9front.iso.gz
 			gunzip 9front.iso.gz
 			stat 9front.iso
-			iso_file='plan9.iso'
+			iso_file='9front.iso'
 			image_name='9front.qcow2.img'
 			;;
 		9legacy)
