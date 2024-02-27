@@ -53,7 +53,7 @@ function install() {
             read -r img_size
             img_size="${img_size:=10G}"
 
-            qemu-img create -f qcow2 "${image_name}" "${img_size}"
+            qemu-img create -f qcow2 -o preallocation=metadata "${image_name}" "${img_size}"
         else
             echo "QEMU image ${image_name} already exists. Skipping creation step."
         fi
