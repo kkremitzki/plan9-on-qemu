@@ -43,7 +43,7 @@ function install() {
 			iso_file='9ants.iso'
 			image_name='9ants.qcow2.img'
                         if [ ! -f "${iso_file}" ]; then
-                            curl -L http://files.9gridchan.org/9ants5.64.iso.gz -o "${iso_file}".gz
+                            curl -L http://files.9gridchan.info/9ants5.64.iso.gz -o "${iso_file}".gz
                             gunzip "${iso_file}".gz
                         else
                             echo "Skipping download, installation ISO ${iso_file} already present."
