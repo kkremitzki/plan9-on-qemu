@@ -7,9 +7,9 @@ function install() {
         distro="${distro:=9front}"
 
 	
-	echo -n 'Specify in GB how large of an image should be created (ex. 30G): '
+	echo -n 'Specify in GB how large of an image should be created (ex. 30G): [default=10G] '
 	read -r img_size
-        img_size="${img_size:=30G}"
+        img_size="${img_size:=10G}"
 
 
 	iso_file=''
@@ -75,8 +75,9 @@ function run() {
 }
 
 
-echo -n 'Would you like to install or run Plan 9? [run, install] '
+echo -n 'Would you like to install or run Plan 9? [run, install] [default=run] '
 read -r action
+action="${action:=run}"
 
 case $action in
 	install)
