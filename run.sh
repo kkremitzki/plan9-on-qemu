@@ -18,25 +18,37 @@ function install() {
 	case $distro in
 		9front)
 			# download iso to 9front.iso
-			curl -L http://9front.org/iso/9front-10277.amd64.iso.gz -o 9front.iso.gz
-			gunzip 9front.iso.gz
-			stat 9front.iso
 			iso_file='9front.iso'
 			image_name='9front.qcow2.img'
+                        if [ ! -f "${iso_file}" ]; then
+                            curl -L http://9front.org/iso/9front-10277.amd64.iso.gz -o "${iso_file}".gz
+                            gunzip "${iso_file}".gz
+                        else
+                            echo "Skipping download, installation ISO ${iso_file} already present."
+                        fi
+			stat "${iso_file}"
 			;;
 		9legacy)
-			curl -L http://9legacy.org/download/9legacy.iso.bz2 -o 9legacy.iso.bz2
-			bunzip2 9legacy.iso.bz2
-			stat 9legacy.iso
 			iso_file='9legacy.iso'
 			image_name='9legacy.qcow2.img'
+                        if [ ! -f "${iso_file}" ]; then
+                            curl -L http://9legacy.org/download/9legacy.iso.bz2 -o "${iso_file}".bz2
+                            bunzip2 "${iso_file}".bz2
+                        else
+                            echo "Skipping download, installation ISO ${iso_file} already present."
+                        fi
+			stat "${iso_file}"
 			;;
 		9ants)
-			curl -L http://files.9gridchan.org/9ants5.64.iso.gz -o 9ants.iso.gz
-			gunzip 9ants.iso.gz
-			stat 9ants.iso
 			iso_file='9ants.iso'
 			image_name='9ants.qcow2.img'
+                        if [ ! -f "${iso_file}" ]; then
+                            curl -L http://files.9gridchan.org/9ants5.64.iso.gz -o "${iso_file}".gz
+                            gunzip "${iso_file}".gz
+                        else
+                            echo "Skipping download, installation ISO ${iso_file} already present."
+                        fi
+			stat "${iso_file}"
 			;;
 	esac
 
