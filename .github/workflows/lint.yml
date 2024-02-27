@@ -1,0 +1,14 @@
+name: Linting
+run-name: Lint shell scripts for ${{ github.repository }}
+on: [push]
+jobs:
+  Shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Update apt cache
+        run: sudo apt-get update
+      - name: Install apt dependencies
+        run: sudo apt-get install -y shellcheck
+      - name: Lint with shellcheck
+        run: shellcheck *.sh
