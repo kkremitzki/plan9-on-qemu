@@ -2,12 +2,15 @@
 
 function install() {
 
-	echo -n 'Would you like to install 9front or 9legacy distribution? [9front, 9legacy, 9ants] '
+	echo -n 'Would you like to install 9front or 9legacy distribution? [9front, 9legacy, 9ants] [default=9front] '
 	read -r distro
+        distro="${distro:=9front}"
 
 	
 	echo -n 'Specify in GB how large of an image should be created (ex. 30G): '
 	read -r img_size
+        img_size="${img_size:=30G}"
+
 
 	iso_file=''
 	image_name=''
@@ -45,8 +48,9 @@ function install() {
 
 function run() {
 
-	echo -n 'Do you want to boot 9front or 9legacy? [9front, 9legacy, 9ants] '
+	echo -n 'Do you want to boot 9front or 9legacy? [9front, 9legacy, 9ants] [default=9front] '
 	read -r opt
+        opt="${opt:=9front}"
 
 	image_name=''
 
@@ -62,8 +66,9 @@ function run() {
 			;;
 	esac
 
-	echo -n 'How much memory in GB should be used for this machine? (ex. 4G) '
+	echo -n 'How much memory in GB should be used for this machine? (ex. 4G) [default=2G] '
 	read -r mem
+        mem="${mem:=2G}"
 
 	# -m option configures memory. feel free to change to match your preferences
 	qemu-system-x86_64 -m "${mem}" "${image_name}"
