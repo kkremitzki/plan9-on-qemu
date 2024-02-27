@@ -6,15 +6,10 @@ function install() {
 	read -r distro
         distro="${distro:=9front}"
 
-	
-	echo -n 'Specify in GB how large of an image should be created (ex. 30G): [default=10G] '
-	read -r img_size
-        img_size="${img_size:=10G}"
-
-
 	iso_file=''
 	image_name=''
 
+        # Download the appropriate ISO, but only if it doesn't exist
 	case $distro in
 		9front)
 			# download iso to 9front.iso
@@ -52,7 +47,16 @@ function install() {
 			;;
 	esac
 
-	qemu-img create -f qcow2 "${image_name}" "${img_size}"
+        # Check if the image already exists before asking about creating it
+        if [ ! -f "${image_name}" ]; then
+            echo -n 'Specify in GB how large of an image should be created (ex. 30G): [default=10G] '
+            read -r img_size
+            img_size="${img_size:=10G}"
+
+            qemu-img create -f qcow2 "${image_name}" "${img_size}"
+        else
+            echo "QEMU image ${image_name} already exists. Skipping creation step."
+        fi
 
 	# Run qemu with installation arguments
 	qemu-system-x86_64 -hda $image_name -cdrom $iso_file -boot d -vga std -m 768
