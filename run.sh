@@ -82,6 +82,11 @@ function run() {
 			;;
 	esac
 
+        if [ ! -f "${image_name}" ]; then
+            echo "QEMU image ${image_name} not found. Run install step for ${opt} first."
+            exit 1
+        fi
+
 	echo -n 'How much memory in GB should be used for this machine? (ex. 4G) [default=2G] '
 	read -r mem
         mem="${mem:=2G}"
