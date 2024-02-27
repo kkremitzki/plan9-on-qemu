@@ -37,7 +37,7 @@ function install() {
 			;;
 	esac
 
-	qemu-img create -f qcow2 $image_name $img_size
+	qemu-img create -f qcow2 "${image_name}" "${img_size}"
 
 	# Run qemu with installation arguments
 	qemu-system-x86_64 -hda $image_name -cdrom $iso_file -boot d -vga std -m 768
@@ -66,7 +66,7 @@ function run() {
 	read -r mem
 
 	# -m option configures memory. feel free to change to match your preferences
-	qemu-system-x86_64 -m $mem $image_name
+	qemu-system-x86_64 -m "${mem}" "${image_name}"
 }
 
 
